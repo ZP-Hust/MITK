@@ -14,14 +14,14 @@ See LICENSE.txt or http://www.mitk.org for details.
 
 ===================================================================*/
 
-#ifndef mitkPointSetVtkMapper2D_h
-#define mitkPointSetVtkMapper2D_h
+#ifndef mitkSpatialLineVtkMapper2D_h
+#define mitkSpatialLineVtkMapper2D_h
 
 #include "mitkBaseRenderer.h"
 #include "mitkLocalStorageHandler.h"
 #include "mitkVtkMapper.h"
 #include <MitkCoreExports.h>
-#include <mitkPointSetShapeProperty.h>
+#include <mitkSpatialLineShapeProperty.h>
 
 // VTK
 #include <vtkSmartPointer.h>
@@ -36,10 +36,10 @@ class vtkCellArray;
 
 namespace mitk
 {
-  class PointSet;
+  class SpatialLine;
 
   /**
-  * @brief Vtk-based 2D mapper for PointSet
+  * @brief Vtk-based 2D mapper for SpatialLine
   *
   * Due to the need of different colors for selected
   * and unselected points and the facts, that we also have a contour and
@@ -54,13 +54,13 @@ namespace mitk
   * a contour between points, calculating and displaying distances or angles
   * between points.
   *
-  * @section mitkPointSetVtkMapper2D_point_rep Point Representation
+  * @section mitkSpatialLineVtkMapper2D_point_rep Point Representation
   *
   * The points are displayed as small glyphs of configurable shape
-  * (see property "PointSet.2D.shape"). The size of these glyphs
+  * (see property "SpatialLine.2D.shape"). The size of these glyphs
   * is given in world units. That means, the size or shape of those
   * glyphs is independent of the BaseGeometry object that you assign
-  * to the PointSet. As for all other objects, _positions_ of points
+  * to the SpatialLine. As for all other objects, _positions_ of points
   * will be transformed into the world via the Geometry's index-to-world
   * transform.
   *
@@ -68,9 +68,9 @@ namespace mitk
   * object is returned in GetProp() and so hooked up into the rendering
   * pipeline.
   *
-  * @section mitkPointSetVtkMapper2D_propertires Applicable Properties
+  * @section mitkSpatialLineVtkMapper2D_propertires Applicable Properties
   *
-  * Properties that can be set for point sets and influence the PointSetVTKMapper2D are:
+  * Properties that can be set for point sets and influence the SpatialLineVTKMapper2D are:
   *
   *   - \b "line width": (IntProperty 2)                      // line width of the line from one point to another
   *   - \b "point line width": (IntProperty 1)                // line width of the cross marking a point
@@ -88,11 +88,11 @@ namespace mitk
   * (equals "always on top" option)
   *   - \b "layer": (IntProperty 1)                           // default is drawing pointset above images (they have a
   * default layer of 0)
-  *   - \b "PointSet.2D.shape" (EnumerationProperty Cross)    // provides different shapes marking a point
+  *   - \b "SpatialLine.2D.shape" (EnumerationProperty Cross)    // provides different shapes marking a point
   *       0 = "None", 1 = "Vertex", 2 = "Dash", 3 = "Cross", 4 = "ThickCross", 5 = "Triangle", 6 = "Square", 7 =
   * "Circle",
   *       8 = "Diamond", 9 = "Arrow", 10 = "ThickArrow", 11 = "HookedArrow", 12 = "Cross"
-  *   - \b "PointSet.2D.fill shape": (BoolProperty false)     // fill or do not fill the glyph shape
+  *   - \b "SpatialLine.2D.fill shape": (BoolProperty false)     // fill or do not fill the glyph shape
   *   - \b "Pointset.2D.distance to plane": (FloatProperty 4.0) //In the 2D render window, points are rendered which lie
   * within a certain distance
   *                                                             to the current plane. They are projected on the current
@@ -118,14 +118,14 @@ namespace mitk
   *
   * @ingroup Mapper
   */
-  class MITKCORE_EXPORT PointSetVtkMapper2D : public VtkMapper
+  class MITKCORE_EXPORT SpatialLineVtkMapper2D : public VtkMapper
   {
   public:
-    mitkClassMacro(PointSetVtkMapper2D, VtkMapper);
+    mitkClassMacro(SpatialLineVtkMapper2D, VtkMapper);
 
     itkFactorylessNewMacro(Self) itkCloneMacro(Self)
 
-      virtual const mitk::PointSet *GetInput() const;
+      virtual const mitk::SpatialLine *GetInput() const;
 
     /** \brief returns the a prop assembly */
     virtual vtkProp *GetVtkProp(mitk::BaseRenderer *renderer) override;
@@ -195,10 +195,10 @@ namespace mitk
 
   protected:
     /* constructor */
-    PointSetVtkMapper2D();
+    SpatialLineVtkMapper2D();
 
     /* destructor */
-    virtual ~PointSetVtkMapper2D();
+    virtual ~SpatialLineVtkMapper2D();
 
     /* \brief Applies the color and opacity properties and calls CreateVTKRenderObjects */
     virtual void GenerateDataForRenderer(mitk::BaseRenderer *renderer) override;
@@ -210,7 +210,7 @@ namespace mitk
     /* \brief Fills the vtk objects, thus it is only called when the point set has been changed.
    * This function iterates over the input point set and determines the glyphs which lie in a specific
    * range around the current slice. Those glyphs are rendered using a specific shape defined in vtk glyph source
-   * to mark each point. The shape can be changed in MITK using the property "PointSet.2D.shape".
+   * to mark each point. The shape can be changed in MITK using the property "SpatialLine.2D.shape".
    *
    * There were issues when rendering vtk glyphs in the 2D-render windows. By default, the glyphs are
    * rendered within the x-y plane in each 2D-render window, so you would only see them from the
@@ -230,11 +230,11 @@ namespace mitk
     int m_LineWidth;              // "line width" property
     int m_PointLineWidth;         // "point line width" property
     float m_Point2DSize;          // "point 2D size" property
-    int m_IDShapeProperty;        // ID for mitkPointSetShape Enumeration Property "Pointset.2D.shape"
+    int m_IDShapeProperty;        // ID for mitkSpatialLineShape Enumeration Property "Pointset.2D.shape"
     bool m_FillShape;             // "Pointset.2D.fill shape" property
     float m_DistanceToPlane;      // "Pointset.2D.distance to plane" property
   };
 
 } // namespace mitk
 
-#endif /* mitkPointSetVtkMapper2D_h */
+#endif /* mitkSpatialLineVtkMapper2D_h */

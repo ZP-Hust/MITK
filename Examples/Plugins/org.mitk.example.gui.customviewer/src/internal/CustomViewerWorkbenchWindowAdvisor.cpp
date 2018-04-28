@@ -52,8 +52,8 @@ void CustomViewerWorkbenchWindowAdvisor::PreWindowOpen()
 {
   berry::IWorkbenchWindowConfigurer::Pointer configurer = this->GetWindowConfigurer();
   configurer->SetTitle("Spartan Viewer");
-  configurer->SetShowMenuBar(false);
-  configurer->SetShowToolBar(false);
+  configurer->SetShowMenuBar(true);
+  configurer->SetShowToolBar(true);
   configurer->SetShowPerspectiveBar(false);
   configurer->SetShowStatusLine(false);
 }
@@ -119,8 +119,8 @@ void CustomViewerWorkbenchWindowAdvisor::CreateWindowContents(berry::Shell::Poin
   PerspectivesLayer->addWidget(OpenFileButton);
 
   // for style customization convenience
-  /*PerspectivesLayer->addSpacing(10);
-  PerspectivesLayer->addWidget(StyleUpdateButton);*/
+  PerspectivesLayer->addSpacing(10);
+  PerspectivesLayer->addWidget(StyleUpdateButton);
 
   // for correct initial layout, see also bug#1654
   CentralWidgetLayout->activate();

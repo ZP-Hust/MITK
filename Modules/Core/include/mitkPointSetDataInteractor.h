@@ -23,7 +23,7 @@
 #include "mitkCommon.h"
 #include "mitkDataInteractor.h"
 #include <MitkCoreExports.h>
-#include <mitkPointSet.h>
+#include "mitkPointSet.h"
 
 namespace mitk
 {

@@ -24,62 +24,10 @@ See LICENSE.txt or http://www.mitk.org for details.
 
 namespace mitk
 {
-  /**
-   * \brief Data structure which stores a set of points. Superclass of
-   * mitk::Mesh.
-   *
-   * 3D points are grouped within a point set; for time resolved usage, one point
-   * set is created and maintained per time step. A point entry consists of the
-   * point coordinates and point data.
-   *
-   * The point data includes a point ID (unique identifier to address this point
-   * within the point set), the selection state of the point and the type of
-   * the point.
-   *
-   * For further information about different point types see
-   * mitk::PointSpecificationType in mitkVector.h.
-   *
-   * Inserting a point is accompanied by an event, containing an index. The new
-   * point is inserted into the list at the specified position. At the same time
-   * an internal ID is generated and stored for the point. Points at specific time
-   * steps are accessed by specifying the time step number (which defaults to 0).
-   *
-   * The points of itk::PointSet stores the points in a pointContainer
-   * (MapContainer). The points are best accessed by using a ConstIterator (as
-   * defined in MapContainer); avoid access via index.
-   *
-   * The class internally uses an itk::Mesh for each time step, because
-   * mitk::Mesh is derived from mitk::PointSet and needs the itk::Mesh structure
-   * which is also derived from itk::PointSet. Thus several typedefs which seem
-   * to be in wrong place, are declared here (for example SelectedLinesType).
-   *
-   * \section mitkPointSetDisplayOptions
-   *
-   * The default mappers for this data structure are mitk::PointSetGLMapper2D and
-   * mitk::PointSetVtkMapper3D. See these classes for display options which can
-   * can be set via properties.
-   *
-   * \section Events
-   *
-   * PointSet issues the following events, for which observers can register
-   * (the below events are grouped into a class hierarchy as indicated by
-   * identation level; e.g. PointSetSizeChangeEvent comprises PointSetAddEvent
-   * and PointSetRemoveEvent):
-   *
-   * <tt>
-   * PointSetEvent <i>subsumes all PointSet events</i>
-   *   PointSetMoveEvent <i>issued when a point of the PointSet is moved</i>
-   *   PointSetSizeChangeEvent <i>subsumes add and remove events</i>
-   *     PointSetAddEvent <i>issued when a point is added to the PointSet</i>
-   *     PointSetRemoveEvent <i>issued when a point is removed from the PointSet</i>
-   * </tt>
-   * \ingroup PSIO
-   * \ingroup Data
-   */
-  class MITKCORE_EXPORT PointSet : public BaseData
+class MITKCORE_EXPORT PointSet : public BaseData
   {
   public:
-    mitkClassMacro(PointSet, BaseData);
+	  mitkClassMacro(PointSet, BaseData);
 
     itkFactorylessNewMacro(Self) itkCloneMacro(Self)
 
@@ -270,9 +218,9 @@ namespace mitk
   protected:
     mitkCloneMacro(Self);
 
-    PointSet();
-    PointSet(const PointSet &other);
-    virtual ~PointSet();
+	PointSet();
+	PointSet(const PointSet &other);
+	virtual ~PointSet();
 
     virtual void PrintSelf(std::ostream &os, itk::Indent indent) const override; ///< print content of the object to os
 
@@ -314,7 +262,7 @@ namespace mitk
    * @return True, if all subsequent comparisons are true, false otherwise
    */
   DEPRECATED(MITKCORE_EXPORT bool Equal(const mitk::PointSet *leftHandSide,
-                                        const mitk::PointSet *rightHandSide,
+	  const mitk::PointSet *rightHandSide,
                                         mitk::ScalarType eps,
                                         bool verbose,
                                         bool checkGeometry = true));
@@ -336,7 +284,7 @@ namespace mitk
    * @return True, if all subsequent comparisons are true, false otherwise
    */
   MITKCORE_EXPORT bool Equal(const mitk::PointSet &leftHandSide,
-                             const mitk::PointSet &rightHandSide,
+	  const mitk::PointSet &rightHandSide,
                              mitk::ScalarType eps,
                              bool verbose,
                              bool checkGeometry = true);

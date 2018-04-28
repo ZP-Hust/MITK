@@ -45,39 +45,45 @@ QtWorkbenchPresentationFactory::QtWorkbenchPresentationFactory(
 StackPresentation::Pointer QtWorkbenchPresentationFactory::CreateEditorPresentation(
     QWidget* parent, IStackPresentationSite::Pointer site)
 {
-  auto   folder = new NativeTabFolder(parent);
+	auto   folder = new EmptyTabFolder(static_cast<QWidget*> (parent),
+		true);
+	StackPresentation::Pointer presentation(new TabbedStackPresentation(site,
+		folder)); //, new StandardViewSystemMenu(site));
 
-  //    /*
-  //     * Set the minimum characters to display, if the preference is something
-  //     * other than the default. This is mainly intended for RCP applications
-  //     * or for expert users (i.e., via the plug-in customization file).
-  //     *
-  //     * Bug 32789.
-  //     */
-  //    final IPreferenceStore store = PlatformUI.getPreferenceStore();
-  //    if (store
-  //        .contains(IWorkbenchPreferenceConstants.EDITOR_MINIMUM_CHARACTERS)) {
-  //      final int minimumCharacters = store
-  //          .getInt(IWorkbenchPreferenceConstants.EDITOR_MINIMUM_CHARACTERS);
-  //      if (minimumCharacters >= 0) {
-  //        folder.setMinimumCharacters(minimumCharacters);
-  //      }
-  //    }
+	return presentation;
+  //auto   folder = new NativeTabFolder(parent);
 
-  auto   partFolder = new PresentablePartFolder(folder);
+  ////    /*
+  ////     * Set the minimum characters to display, if the preference is something
+  ////     * other than the default. This is mainly intended for RCP applications
+  ////     * or for expert users (i.e., via the plug-in customization file).
+  ////     *
+  ////     * Bug 32789.
+  ////     */
+  ////    final IPreferenceStore store = PlatformUI.getPreferenceStore();
+  ////    if (store
+  ////        .contains(IWorkbenchPreferenceConstants.EDITOR_MINIMUM_CHARACTERS)) {
+  ////      final int minimumCharacters = store
+  ////          .getInt(IWorkbenchPreferenceConstants.EDITOR_MINIMUM_CHARACTERS);
+  ////      if (minimumCharacters >= 0) {
+  ////        folder.setMinimumCharacters(minimumCharacters);
+  ////      }
+  ////    }
 
-  StackPresentation::Pointer result(new TabbedStackPresentation(site,
-      partFolder)); //, new StandardEditorSystemMenu(site));
+  //auto   partFolder = new PresentablePartFolder(folder);
 
-  //  DefaultThemeListener themeListener =
-  //      new DefaultThemeListener(folder, result.getTheme());
-  //  result.getTheme().addListener(themeListener);
-  //
-  //  new DefaultMultiTabListener(result.getApiPreferences(), IWorkbenchPreferenceConstants.SHOW_MULTIPLE_EDITOR_TABS, folder);
-  //
-  //  new DefaultSimpleTabListener(result.getApiPreferences(), IWorkbenchPreferenceConstants.SHOW_TRADITIONAL_STYLE_TABS, folder);
+  //StackPresentation::Pointer result(new TabbedStackPresentation(site,
+  //    partFolder)); //, new StandardEditorSystemMenu(site));
 
-  return result;
+  ////  DefaultThemeListener themeListener =
+  ////      new DefaultThemeListener(folder, result.getTheme());
+  ////  result.getTheme().addListener(themeListener);
+  ////
+  ////  new DefaultMultiTabListener(result.getApiPreferences(), IWorkbenchPreferenceConstants.SHOW_MULTIPLE_EDITOR_TABS, folder);
+  ////
+  ////  new DefaultSimpleTabListener(result.getApiPreferences(), IWorkbenchPreferenceConstants.SHOW_TRADITIONAL_STYLE_TABS, folder);
+
+  //return result;
 }
 
 StackPresentation::Pointer QtWorkbenchPresentationFactory::CreateViewPresentation(

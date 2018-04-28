@@ -45,18 +45,18 @@ namespace mitk
    *
    */
 
-  class MITKCORE_EXPORT PointSetShapeProperty : public EnumerationProperty
+  class MITKCORE_EXPORT SpatialLineShapeProperty : public EnumerationProperty
   {
   public:
-    mitkClassMacro(PointSetShapeProperty, EnumerationProperty);
+    mitkClassMacro(SpatialLineShapeProperty, EnumerationProperty);
 
     itkFactorylessNewMacro(Self) itkCloneMacro(Self)
 
-      mitkNewMacro1Param(PointSetShapeProperty, const IdType &);
+      mitkNewMacro1Param(SpatialLineShapeProperty, const IdType &);
 
-    mitkNewMacro1Param(PointSetShapeProperty, const std::string &);
+    mitkNewMacro1Param(SpatialLineShapeProperty, const std::string &);
 
-    enum PointSetShape
+    enum SpatialLineShape
     {
       NONE = 0,
       VERTEX = 1,
@@ -76,24 +76,24 @@ namespace mitk
     /**
      * Returns the current shape
      */
-    virtual int GetPointSetShape() const;
+    virtual int GetSpatialLineShape() const;
 
     using BaseProperty::operator=;
 
   protected:
     /** Sets rendering type to default (VTK_RAY_CAST_COMPOSITE_FUNCTION).
      */
-    PointSetShapeProperty();
+    SpatialLineShapeProperty();
 
     /**
      * Constructor. Sets rendering type to the given value.
      */
-    PointSetShapeProperty(const IdType &value);
+    SpatialLineShapeProperty(const IdType &value);
 
     /**
      * Constructor. Sets rendering type to the given value.
      */
-    PointSetShapeProperty(const std::string &value);
+    SpatialLineShapeProperty(const std::string &value);
 
     /**
      * this function is overridden as protected, so that the user may not add
@@ -104,11 +104,11 @@ namespace mitk
     /**
      * Adds the default enumeration types.
      */
-    virtual void AddPointSetShapes();
+    virtual void AddSpatialLineShapes();
 
   private:
     // purposely not implemented
-    PointSetShapeProperty &operator=(const PointSetShapeProperty &);
+    SpatialLineShapeProperty &operator=(const SpatialLineShapeProperty &);
 
     virtual itk::LightObject::Pointer InternalClone() const override;
   };

@@ -26,5 +26,5 @@ MinimalPerspective::MinimalPerspective()
 void MinimalPerspective::CreateInitialLayout(berry::IPageLayout::Pointer layout)
 {
   // Hides the editor area.
-  layout->SetEditorAreaVisible(false);
+  layout->SetEditorAreaVisible(true);
 }

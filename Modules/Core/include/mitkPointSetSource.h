@@ -18,13 +18,13 @@ See LICENSE.txt or http://www.mitk.org for details.
 #define _MITK_POINT_SET_SOURCE_H
 
 #include "mitkBaseDataSource.h"
-#include "mitkPointSet.h"
+#include "mitkSpatialLine.h"
 
 namespace mitk
 {
   /**
    * @brief Superclass of all classes generating point sets (instances of class
-   * mitk::PointSet) as output.
+   * mitk::SpatialLine) as output.
    *
    * In itk and vtk the generated result of a ProcessObject is only guaranteed
    * to be up-to-date, when Update() of the ProcessObject or the generated
@@ -32,14 +32,14 @@ namespace mitk
    * DataObject.
    * @ingroup Process
    */
-  class MITKCORE_EXPORT PointSetSource : public BaseDataSource
+  class MITKCORE_EXPORT SpatialLineSource : public BaseDataSource
   {
   public:
-    mitkClassMacro(PointSetSource, BaseDataSource)
+    mitkClassMacro(SpatialLineSource, BaseDataSource)
 
       itkFactorylessNewMacro(Self) itkCloneMacro(Self)
 
-        typedef PointSet OutputType;
+        typedef SpatialLine OutputType;
 
     typedef OutputType::Pointer OutputTypePointer;
 
@@ -63,9 +63,9 @@ namespace mitk
     virtual itk::DataObject::Pointer MakeOutput(const DataObjectIdentifierType &name) override;
 
   protected:
-    PointSetSource();
+    SpatialLineSource();
 
-    virtual ~PointSetSource();
+    virtual ~SpatialLineSource();
   };
 }
 #endif // #define _MITK_POINT_SET_SOURCE_H
