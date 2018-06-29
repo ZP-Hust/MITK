@@ -1,0 +1,30 @@
+为隐藏编辑区标题，对插件org.blueberry.ui.qt做如下修改：
+
+  文件：E:\MITK2016.11\MITK\Plugins\org.blueberry.ui.qt\src\internal\defaultpresentation\berryQtWorkbenchPresentationFactory.cpp
+
+  行号：45
+
+  修改前代码：
+     StackPresentation::Pointer QtWorkbenchPresentationFactory::CreateEditorPresentation(
+         QWidget* parent, IStackPresentationSite::Pointer site)
+     {
+       auto   folder = new NativeTabFolder(parent);
+
+       auto   partFolder = new PresentablePartFolder(folder);
+     
+       StackPresentation::Pointer result(new TabbedStackPresentation(site,partFolder)); //, new StandardEditorSystemMenu(site));
+
+       return result;
+     }
+
+  修改后代码：
+     StackPresentation::Pointer QtWorkbenchPresentationFactory::CreateEditorPresentation(
+         QWidget* parent, IStackPresentationSite::Pointer site)
+     {
+         auto   folder = new EmptyTabFolder(static_cast<QWidget*> (parent),true);
+
+         StackPresentation::Pointer presentation(new TabbedStackPresentation(site,folder)); //, new StandardViewSystemMenu(site));
+
+         return presentation;
+     }
+

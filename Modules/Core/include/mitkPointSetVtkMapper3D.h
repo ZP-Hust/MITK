@@ -14,8 +14,8 @@ See LICENSE.txt or http://www.mitk.org for details.
 
 ===================================================================*/
 
-#ifndef MITKSpatialLineVtkMAPPER3D_H_HEADER_INCLUDED_C1907273
-#define MITKSpatialLineVtkMAPPER3D_H_HEADER_INCLUDED_C1907273
+#ifndef MITKPointSetVtkMAPPER3D_H_HEADER_INCLUDED_C1907273
+#define MITKPointSetVtkMAPPER3D_H_HEADER_INCLUDED_C1907273
 
 #include "mitkBaseRenderer.h"
 #include "mitkVtkMapper.h"
@@ -33,10 +33,10 @@ class vtkTransformPolyDataFilter;
 
 namespace mitk
 {
-  class SpatialLine;
+  class PointSet;
 
   /**
-  * @brief Vtk-based mapper for SpatialLine
+  * @brief Vtk-based mapper for PointSet
   *
   * Due to the need of different colors for selected
   * and unselected points and the facts, that we also have a contour and
@@ -55,7 +55,7 @@ namespace mitk
   * object is returned in GetProp() and so hooked up into the rendering
   * pipeline.
 
-  * Properties that can be set for point sets and influence the SpatialLineVTKMapper3D are:
+  * Properties that can be set for point sets and influence the PointSetVTKMapper3D are:
   *
 
   *   - \b "color": (ColorProperty*) Color of the point set
@@ -91,14 +91,14 @@ namespace mitk
   *
   * @ingroup Mapper
   */
-  class MITKCORE_EXPORT SpatialLineVtkMapper3D : public VtkMapper
+  class MITKCORE_EXPORT PointSetVtkMapper3D : public VtkMapper
   {
   public:
-    mitkClassMacro(SpatialLineVtkMapper3D, VtkMapper);
+    mitkClassMacro(PointSetVtkMapper3D, VtkMapper);
 
     itkFactorylessNewMacro(Self) itkCloneMacro(Self)
 
-      virtual const mitk::SpatialLine *GetInput();
+      virtual const mitk::PointSet *GetInput();
 
     // overwritten from VtkMapper3D to be able to return a
     // m_PointsAssembly which is much faster than a vtkAssembly
@@ -117,9 +117,9 @@ namespace mitk
     LocalStorageHandler<BaseLocalStorage> m_LSH;
 
   protected:
-    SpatialLineVtkMapper3D();
+    PointSetVtkMapper3D();
 
-    virtual ~SpatialLineVtkMapper3D();
+    virtual ~PointSetVtkMapper3D();
 
     virtual void GenerateDataForRenderer(mitk::BaseRenderer *renderer) override;
     virtual void ResetMapper(BaseRenderer *renderer) override;
@@ -165,4 +165,4 @@ namespace mitk
 
 } // namespace mitk
 
-#endif /* MITKSpatialLineVtkMAPPER3D_H_HEADER_INCLUDED_C1907273 */
+#endif /* MITKPointSetVtkMAPPER3D_H_HEADER_INCLUDED_C1907273 */

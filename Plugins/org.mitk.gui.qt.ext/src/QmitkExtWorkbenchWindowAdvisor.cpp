@@ -1221,50 +1221,50 @@ QString QmitkExtWorkbenchWindowAdvisor::ComputeTitle()
     title = productName;
   }
 
-  //if(showMitkVersionInfo)
-  //{
-  //  title += QString(" ") + MITK_VERSION_STRING;
-  //}
+  if(showMitkVersionInfo)
+  {
+    title += QString(" ") + MITK_VERSION_STRING;
+  }
 
-  //if (showVersionInfo)
-  //{
-  //  // add version informatioin
-  //  QString versions = QString(" (ITK %1.%2.%3  VTK %4.%5.%6 Qt %7 MITK %8)")
-  //    .arg(ITK_VERSION_MAJOR).arg(ITK_VERSION_MINOR).arg(ITK_VERSION_PATCH)
-  //    .arg(VTK_MAJOR_VERSION).arg(VTK_MINOR_VERSION).arg(VTK_BUILD_VERSION)
-  //    .arg(QT_VERSION_STR)
-  //    .arg(MITK_VERSION_STRING);
+  if (showVersionInfo)
+  {
+    // add version informatioin
+    QString versions = QString(" (ITK %1.%2.%3  VTK %4.%5.%6 Qt %7 MITK %8)")
+      .arg(ITK_VERSION_MAJOR).arg(ITK_VERSION_MINOR).arg(ITK_VERSION_PATCH)
+      .arg(VTK_MAJOR_VERSION).arg(VTK_MINOR_VERSION).arg(VTK_BUILD_VERSION)
+      .arg(QT_VERSION_STR)
+      .arg(MITK_VERSION_STRING);
 
-  //  title += versions;
-  //}
+    title += versions;
+  }
 
-  //if (currentPage)
-  //{
-  //  if (activeEditor)
-  //  {
-  //    lastEditorTitle = activeEditor->GetTitleToolTip();
-  //    if (!lastEditorTitle.isEmpty())
-  //      title = lastEditorTitle + " - " + title;
-  //  }
-  //  berry::IPerspectiveDescriptor::Pointer persp =
-  //    currentPage->GetPerspective();
-  //  QString label = "";
-  //  if (persp)
-  //  {
-  //    label = persp->GetLabel();
-  //  }
-  //  berry::IAdaptable* input = currentPage->GetInput();
-  //  if (input && input != wbAdvisor->GetDefaultPageInput())
-  //  {
-  //    label = currentPage->GetLabel();
-  //  }
-  //  if (!label.isEmpty())
-  //  {
-  //    title = label + " - " + title;
-  //  }
-  //}
+  if (currentPage)
+  {
+    if (activeEditor)
+    {
+      lastEditorTitle = activeEditor->GetTitleToolTip();
+      if (!lastEditorTitle.isEmpty())
+        title = lastEditorTitle + " - " + title;
+    }
+    berry::IPerspectiveDescriptor::Pointer persp =
+      currentPage->GetPerspective();
+    QString label = "";
+    if (persp)
+    {
+      label = persp->GetLabel();
+    }
+    berry::IAdaptable* input = currentPage->GetInput();
+    if (input && input != wbAdvisor->GetDefaultPageInput())
+    {
+      label = currentPage->GetLabel();
+    }
+    if (!label.isEmpty())
+    {
+      title = label + " - " + title;
+    }
+  }
 
-  //title += " (Not for use in diagnosis or treatment of patients)";
+  title += " (Not for use in diagnosis or treatment of patients)";
 
   return title;
 }
